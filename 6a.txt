@@ -1,0 +1,29 @@
+Georeferencing Topo Sheets and Scanned Maps
+Georeferncing require Georeferencer GDAL plugin, so if it is not installed first install it.
+Click on Raster  Georeferencer  Georeferencer to open the plugin.
+The plugin window is divided into 2 sections, in the top section the raster will be displayed
+and in the bottom section a table showing GCPs will appear.Click on File  Open raster on Georeferencer
+ window. And open Scanned map of South India
+If we have collected the ground control points using a GPS device, we would have the WGS84 CRS. 
+If we are geo-referencing a scanned map like this, we can obtain the CRS information from the map itself.
+ Looking at our map image, the coordinates are in Lat/Long. There is no datum information given, so we 
+have to assume an appropriate one.
+Since it is India and the map is quite old, we can select the Everest 1830 datum. 4044 crs
+We will see the image will be loaded on the top section.
+We can use the zoom/pan controls in the toolbar to learn more about the map.
+Now we need to assign coordinates to some points on this map. If we look closely, we will see coordinate 
+grid with markings. Using this grid, you can determine the X and Y coordinates of the points where the grids intersect.
+Click on Add Point icon on the toolbar.
+Mouse pointer will be converted into plus sign, keep that plus sign on the intersection of horizontal and
+ vertical lines and enter coordinate values according to scanned map.
+Similarly, add at least 4 GCPs as shown below as shown in figure below. The more points we have, the more accurate
+ our image is registered to the target coordinates.
+The GCP table now has a row with details of our GCP.
+Once we have enough points, go to Settings  Transformation settings.
+In the Transformation settings dialog, choose the Transformation type as “Thin Plate Spline”. Select location and
+ name for output raster. Choose EPSG:4326 as the target SRS so the resulting image is in a widely compatible datum. 
+Make sure the Load in QGIS when done option is checked. CLick OK.
+In the Georeferencer window, go to File  Start georeferencing. This will start the process of warping the image using 
+the GCPs and creating the target raster.
+Once the process finishes, we will see the georeferenced layer loaded in QGIS.
+To verify georeferncing, load the country boundaries i.e. IND_adm0 by clicking on add vector layer.
